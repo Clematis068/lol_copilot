@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from openai import AsyncOpenAI # <--- 改用异步客户端
+from openai import AsyncOpenAI 
 from dotenv import load_dotenv
 
 # 1. 加载环境变量 (.env)
@@ -19,7 +19,7 @@ async def get_strategy(champion_name: str):
     """
     异步获取攻略：优先读本地 txt，没有则问 LLM 通用知识
     """
-    print(f"   🧠 [RAG] 正在思考 {champion_name} 的打法...")
+    print(f"正在思考 {champion_name} 的打法")
     
     # --- A. 检索阶段 (Retrieval) ---
     file_path = KNOWLEDGE_DIR / f"{champion_name}.txt"
@@ -28,9 +28,9 @@ async def get_strategy(champion_name: str):
     if file_path.exists():
         with open(file_path, "r", encoding="utf-8") as f:
             context = f.read()
-        print(f"   ✅ [RAG] 命中本地知识库: {file_path.name}")
+        print(f"命中本地知识库: {file_path.name}")
     else:
-        print(f"   ⚠️ [RAG] 本地无数据，将使用 LLM 通用知识生成。")
+        print(f"本地无数据，将使用 LLM 通用知识生成。")
         context = "暂无具体数据，请基于你的通用知识回答。"
 
     # --- B. 生成阶段 (Generation) ---

@@ -1,8 +1,7 @@
 import asyncio
 from lcu_driver import Connector
 from lol_copilot.champion_data import champ_db
-# 引入刚才写的异步函数
-from lol_copilot.rag.engine import get_strategy
+
 
 connector = Connector()
 last_detected_champ = None
